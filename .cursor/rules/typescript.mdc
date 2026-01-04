@@ -1,0 +1,22 @@
+---
+name: typescript
+description: TypeScript coding standards for strict typing and modern syntax.
+alwaysApply: true
+---
+
+# Overview
+
+- Trust TypeScript's type inference as much as possible for simple variables and standard function return types.
+- For complex objects or arrays (e.g., arrays of objects), use `as const` or `as const satisfies T` to preserve literal types and ensure structural correctness.
+
+Example:
+```typescript
+import type { LinkOptions } from '@tanstack/react-router'
+
+const navLinks = [
+  { linkOptions: { to: '/' }, label: 'Accueil' },
+  { linkOptions: { to: '/' }, label: 'Nos terrains' },
+  { linkOptions: { to: '/' }, label: 'Tarifs' },
+  { linkOptions: { to: '/' }, label: 'Contact' }
+] as const satisfies { linkOptions: LinkOptions; label: string }[]
+```
